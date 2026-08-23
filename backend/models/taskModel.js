@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const taskSchema = new mongoose.Schema(
     {
         user:{
-            userId:mongoose.Schema.Types.ObjectId,
+            type:mongoose.Schema.Types.ObjectId,
             required:true,
             ref:'users'
         },
@@ -21,6 +21,5 @@ const taskSchema = new mongoose.Schema(
     }
 );
 
-const taskModel = mongoose.model('taskList',taskSchema);
+export const taskModel = mongoose.model('taskList',taskSchema);
 
-export default taskModel;

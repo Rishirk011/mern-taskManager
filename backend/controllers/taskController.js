@@ -5,6 +5,9 @@ export const getTasks = (asyncHandler(async(req,res)=>{
 
     const tasks = await taskModel.find({user:req.user.id})
     .sort({createdAt:-1})
+
+    console.log(tasks);
+    
     
     res.status(200).json(tasks);
 
@@ -40,6 +43,8 @@ export const updateTasks = (asyncHandler(async (req,res) => {
     const {task, description} = req.body;
     const id = req.params.id;
 
+    console.log(req.user._id);
+    
     const findTask = await taskModel.findById(id);
 
     if(!findTask){
@@ -61,7 +66,7 @@ export const updateTasks = (asyncHandler(async (req,res) => {
     const updateTask = await taskModel.findByIdAndUpdate(
         id,
         {task,description},
-        {new:true}
+        {returnDocument:'after'}
     )
 
     res.status(200).json(updateTask);
@@ -80,7 +85,6 @@ export const deleteTasks = (asyncHandler(async(req,res)=>{
     if(deleteTask.user.toString() !== req.user.id){
         res.status(400);
         throw new Error("user is invalid");
-        
     }
     
     await deleteTask.deleteOne();

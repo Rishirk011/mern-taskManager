@@ -1,4 +1,21 @@
+import { useState } from "react";
+import useAuthStore from "../store/authStore"
+import { useNavigate } from "react-router";
+
 const Login = () => {
+
+    const {loginUser} = useAuthStore();
+
+    const navigate = useNavigate();
+
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+
+    const handleLogin= async(e)=>{
+        e.preventDefault();
+        await loginUser(email,password);
+        navigate('/');
+    }
 
     return <div className="container-fluid
         d-flex justify-content-center
@@ -24,7 +41,7 @@ const Login = () => {
                     
                         <input type="email" 
                         className="form-control"
-                        placeholder="email"/>
+                        placeholder="email" onChange={(e)=>setEmail(e.target.value)}/>
                     
                     </div>
 
@@ -37,7 +54,7 @@ const Login = () => {
                         
                         <input type="password" 
                         className="form-control"
-                        placeholder="password"/>
+                        placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
 
                     </div>
 
@@ -45,7 +62,7 @@ const Login = () => {
                     d-grid">
                 
                         <button className="btn btn-primary
-                        ">
+                        " onClick={(e)=>handleLogin(e)}>
                             Login
                         </button>
                     

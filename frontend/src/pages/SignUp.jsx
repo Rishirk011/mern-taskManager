@@ -1,5 +1,29 @@
-import { Link } from "react-router";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import 
+    useAuthStore
+ from "../store/authStore";
+
 const SignUp = () =>{
+
+    const {registerUser} = useAuthStore();
+
+    const [userName,setUserName] = useState("");
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+
+    const navigate = useNavigate();
+
+    const handleSignUp = async(e)=>{
+        
+        e.preventDefault();
+
+        await registerUser(userName, email, password);
+        
+        navigate('/login');
+
+    }
+
 
     return <>
         <div className="container-fluid
@@ -23,7 +47,7 @@ const SignUp = () =>{
                         </label>
                     
                         <input type="text" 
-                        className="form-control"/>
+                        className="form-control" onChange={(e)=>setUserName(e.target.value)}/>
                     
                     </div>
                     
@@ -34,7 +58,7 @@ const SignUp = () =>{
                         </label>
                     
                         <input type="email" 
-                        className="form-control"/>
+                        className="form-control" onChange={(e)=>setEmail(e.target.value)}/>
                     
                     </div>
                     
@@ -46,14 +70,14 @@ const SignUp = () =>{
                         </label>
                     
                         <input type="password" 
-                        className="form-control"/>
+                        className="form-control" onChange={(e)=>setPassword(e.target.value)}/>
                     
                     </div>
                     
                     <div className="btn-section
                     mt-3 text-center">
                     
-                        <button className="btn btn-success">
+                        <button className="btn btn-success" onClick={(e)=>handleSignUp(e)}>
                             submit
                         </button>
                     

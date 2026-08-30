@@ -1,0 +1,22 @@
+.editBtn{
+    height: 100%;
+    max-height: 40px;
+    transition: 0.4s;
+    color: white;
+    background-color: lightgreen;
+}
+.editBtn:hover{
+    opacity: 0.7;
+}
+
+.deleteBtn{
+    height: 100%;
+    max-height: 40px;
+    transition: 0.4s;
+    color: white;
+    background-color: red;
+}
+
+.deleteBtn:hover{
+    opacity: 0.7;
+}

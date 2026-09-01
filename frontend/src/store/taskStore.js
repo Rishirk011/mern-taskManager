@@ -1,4 +1,5 @@
 import {create} from 'zustand'
+import API_BASE_URL from '../utils/api';
 
 const useTaskStore = create((set)=>({
 
@@ -10,7 +11,7 @@ const useTaskStore = create((set)=>({
         const token = localStorage.getItem('token');
         set({loading:true,error:null});
         try{
-            const response = await fetch('http://localhost:3000/taskcollections',{
+            const response = await fetch(`${API_BASE_URL}taskcollections`,{
                 headers:{
                     'Authorization':`Bearer ${token}`
                 }
@@ -30,7 +31,7 @@ const useTaskStore = create((set)=>({
 
         set({loading:true,error:null});
         try{
-            const response = await fetch('http://localhost:3000/taskcollections',{
+            const response = await fetch(`${API_BASE_URL}taskcollections`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
@@ -52,7 +53,7 @@ const useTaskStore = create((set)=>({
 
         set({loading:true,error:null});
         try{
-            const response = await fetch(`http://localhost:3000/taskcollections/${id}`,{
+            const response = await fetch(`${API_BASE_URL}taskcollections/${id}`,{
                 method:'PUT',
                 headers:{
                     'Content-type':'application/json',
@@ -77,7 +78,7 @@ const useTaskStore = create((set)=>({
 
         set({loading:true,error:null});
         try{
-            const response = await fetch(`http://localhost:3000/taskcollections/${id}`,{
+            const response = await fetch(`${API_BASE_URL}taskcollections/${id}`,{
                 method:'DELETE',
                 headers:{
                     'Authorization':`Bearer ${token}`

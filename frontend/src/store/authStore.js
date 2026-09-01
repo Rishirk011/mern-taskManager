@@ -1,4 +1,5 @@
 import {create} from 'zustand';
+import API_BASE_URL from '../utils/api';
 
 
 const useAuthStore = create((set)=>({
@@ -8,7 +9,7 @@ const useAuthStore = create((set)=>({
 
     registerUser:async (userName,email,password) => {
         try{
-            const response = await fetch("http://localhost:3000/usercollections/register",{
+            const response = await fetch(`${api}usercollections/register`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -28,7 +29,7 @@ const useAuthStore = create((set)=>({
 
     loginUser:async (email,password) => {
         try{
-            const response = await fetch('http://localhost:3000/usercollections/login',{
+            const response = await fetch(`${API_BASE_URL}usercollections/login`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'

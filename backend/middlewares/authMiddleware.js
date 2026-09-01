@@ -22,7 +22,8 @@ const protect = (asyncHandler(async (req,res,next) => {
         }
     }
     if(!token){
-        return res.status(400);
+        res.status(400);
+        throw new Error("no token provided");
     }
 
 }))

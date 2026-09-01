@@ -4,7 +4,7 @@ import ListItem from "../../components/listItem/ListItem";
 import { useEffect, useState } from "react";
 import useTaskStore from "../../store/taskStore.js";
 import useAuthStore from "../../store/authStore.js";
-import { useNavigate } from "react-router";
+import { Await, useNavigate } from "react-router";
 
 const Home = () =>{
     
@@ -33,6 +33,21 @@ const Home = () =>{
         navigate('/login');
     } 
 
+    const addTask = () => {
+        
+        if(!task || !description){
+            alert("fields are empty");
+            return;
+        }
+        else
+            addTasks(task,description);
+
+        setTask("");
+        setDescription("");
+    }
+
+
+
     return <>
         <div className={styles.container}>
             
@@ -58,13 +73,13 @@ const Home = () =>{
                         
                         <input type="text" 
                         placeholder="enter task name"
-                        onChange={(e)=>setTask(e.target.value)}/>
+                        onChange={(e)=>setTask(e.target.value)} value={task}/>
 
                         <input type="text" 
                         placeholder="enter description"
-                        onChange={(e)=>setDescription(e.target.value)}/>
+                        onChange={(e)=>setDescription(e.target.value)} value={description}/>
 
-                        <button onClick={()=>addTasks(task,description)}> 
+                        <button onClick={addTask}> 
                             add
                         </button>
                     </div>

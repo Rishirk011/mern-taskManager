@@ -12,8 +12,6 @@ APP.use(cors());
 APP.use(router);
 APP.use(errorHandler);
 
-console.log(process.env.JWT_SECRET);
-
 connectDb()
 .then(()=>{
     APP.listen(process.env.PORT,()=>{

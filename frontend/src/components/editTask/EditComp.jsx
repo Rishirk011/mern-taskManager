@@ -9,6 +9,11 @@ const EditComponent = ({id, setEditId }) => {
     const [editedDescription,setEditedDescription] = useState("");
 
     const updateTask=async () => {
+        if(!editedTask  || !editedDescription){
+            alert("fields are empty");
+            return;
+        }
+
         await updateTasks(editedTask,editedDescription,id);
         setEditId(-1);
     }

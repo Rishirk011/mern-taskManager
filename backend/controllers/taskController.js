@@ -3,11 +3,7 @@ import asyncHandler from "express-async-handler";
 
 export const getTasks = (asyncHandler(async(req,res)=>{
 
-    const tasks = await taskModel.find({user:req.user.id})
-    .sort({createdAt:-1})
-
-    console.log(tasks);
-    
+    const tasks = await taskModel.find({user:req.user.id});
     
     res.status(200).json(tasks);
 

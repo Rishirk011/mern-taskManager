@@ -17,14 +17,12 @@ const protect = (asyncHandler(async (req,res,next) => {
             next();
         }
         catch(err){
-            console.log(req.headers.authorization);
-            
             res.status(401);
             throw new Error("user not authorized")
         }
     }
     if(!token){
-        res.status(400);
+        return res.status(400);
     }
 
 }))

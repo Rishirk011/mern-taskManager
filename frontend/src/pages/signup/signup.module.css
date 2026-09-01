@@ -1,0 +1,27 @@
+.container{
+    background-color: aliceblue;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    text-align: center;
+    border: 2px solid wheat;
+    border-radius: 20px;
+    background-color: white;
+}
+.submit{
+    background-color: blue;
+    border: none;
+    padding: 0.25rem;    
+    border-radius: 5px;
+    color: white;
+    transition: 0.4s;
+}
+
+
+.submit:hover{
+    color: blue;
+    background-color: black;
+}
